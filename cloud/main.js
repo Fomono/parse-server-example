@@ -9,8 +9,9 @@ Parse.Cloud.define('pushChannelTest', function(request, response) {
   // https://github.com/codepath/ParsePushNotificationExample
   // See https://github.com/codepath/ParsePushNotificationExample/blob/master/app/src/main/java/com/test/MyCustomReceiver.java
   var customData = params.customData;
-  var launch = params.launch;
-  var broadcast = params.broadcast;
+  // var launch = params.launch;
+  // var broadcast = params.broadcast;
+  var eventData = params.eventData;
 
   // use to custom tweak whatever payload you wish to send
   var pushQuery = new Parse.Query(Parse.Installation);
@@ -21,11 +22,14 @@ Parse.Cloud.define('pushChannelTest', function(request, response) {
   if (customData) {
       payload.customdata = customData;
   }
-  else if (launch) {
-      payload.launch = launch;
-  }
-  else if (broadcast) {
-      payload.broadcast = broadcast;
+  // else if (launch) {
+  //     payload.launch = launch;
+  // }
+  // else if (broadcast) {
+  //     payload.broadcast = broadcast;
+  // }
+  else if (eventData) {
+    payload.eventData = eventData;
   }
 
   // Note that useMasterKey is necessary for Push notifications to succeed.
@@ -42,6 +46,7 @@ Parse.Cloud.define('pushChannelTest', function(request, response) {
   response.success('success');
 });
 
+/*
 // iOS push testing
 Parse.Cloud.define("iosPushTest", function(request, response) {
 
@@ -68,4 +73,4 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
 
   response.success('success');
 });
-
+*/
